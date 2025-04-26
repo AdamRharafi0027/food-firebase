@@ -1,35 +1,34 @@
 import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../../../firebase/firebase";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
 import "./Signup.css";
 
 const Signup = () => {
-  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const [username, setUsername] = useState("");
+  const [message, setMessage] = useState({ text: "", type: "" });
   const navigate = useNavigate();
 
   const handleSignup = async (e) => {
     e.preventDefault();
-
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-      await updateProfile(userCredential.user, {
-        displayName: username,
-      });
-
-      alert("Account created! 🎉");
-      navigate("/");
+      await updateProfile(userCredential.user, { displayName: username });
+      setMessage({ text: "✅ Account created successfully! Redirecting to login...", type: "success" });
+      setTimeout(() => {
+        navigate("/login");
+      }, 1500);
     } catch (err) {
-      alert(err.message);
+      setMessage({ text: `❌ ${err.message}`, type: "error" });
     }
   };
 
   return (
     <div className="auth-form">
-      <h2>Create an Account</h2>
+      <h2>Sign Up</h2>
+      {message.text && <div className={`message ${message.type}`}>{message.text}</div>}
       <form onSubmit={handleSignup}>
         <input
           type="text"
@@ -52,14 +51,14 @@ const Signup = () => {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        <button type="submit">Sign Up</button>
-        <p>
-          Already have an account?{" "}
-          <span onClick={() => navigate("/login")} style={{ color: "#ff6b6b", cursor: "pointer" }}>
-            Login
-          </span>
-        </p>
+        <button type="submit">Register</button>
       </form>
+      <p className="auth-footer">
+        Already have an account?{" "}
+        <Link to="/login" className="auth-link">
+          Login
+        </Link>
+      </p>
     </div>
   );
 };

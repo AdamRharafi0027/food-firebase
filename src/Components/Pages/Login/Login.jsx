@@ -1,44 +1,57 @@
 import { useState } from "react";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../../../firebase/firebase";
-import { Link } from "react-router-dom";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import "./Login.css";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [message, setMessage] = useState({ text: "", type: "" });
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      alert("Welcome back! 👋");
+      setMessage({ text: "✅ Login successful!", type: "success" });
+      setTimeout(() => {
+        navigate("/food-firebase/");
+      }, 1500);
     } catch (err) {
-      alert(err.message);
+      setMessage({ text: `❌ ${err.message}`, type: "error" });
     }
   };
 
   return (
     <div className="auth-form">
       <h2>Login</h2>
+      {message.text && (
+        <div className={`message ${message.type}`}>{message.text}</div>
+      )}
       <form onSubmit={handleLogin}>
-        <input 
-          type="email" 
-          placeholder="Email" 
+        <input
+          type="email"
+          placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          required 
+          required
         />
-        <input 
-          type="password" 
-          placeholder="Password" 
+        <input
+          type="password"
+          placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          required 
+          required
         />
         <button type="submit">Login</button>
-        <p>Don't have an account? <Link to="/signup">Register</Link></p>
       </form>
+      <p className="auth-footer">
+        Don't have an account?{" "}
+        <Link to="/signup" className="auth-link">
+          Create one
+        </Link>
+      </p>
     </div>
   );
 };

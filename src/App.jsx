@@ -25,7 +25,7 @@ const App = () => {
   return (
     <Routes>
       <Route
-        path="/"
+        path="/food-firebase/"
         element={
           <ProtectedRoute>
             <>

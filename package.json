@@ -9,8 +9,8 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-  "predeploy": "npm run build",
-  "deploy": "gh-pages -d dist"
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "bootstrap": "^5.3.5",
@@ -20,8 +20,10 @@
     "react-bootstrap": "^2.10.9",
     "react-dom": "^19.0.0",
     "react-icons": "^5.5.0",
+    "react-redux": "^9.2.0",
     "react-router-dom": "^7.5.0",
-    "react-scroll": "^1.9.3"
+    "react-scroll": "^1.9.3",
+    "redux": "^5.0.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",

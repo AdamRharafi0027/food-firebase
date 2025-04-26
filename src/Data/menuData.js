@@ -1,3 +1,9 @@
+import pizza from '../../public/images/pizza.png'
+import pizza1 from '../../public/images/pizza1.png'
+import burger1 from '../../public/images/burger1.png'
+import cola from '../../public/images/cola.png'
+
+
 const menuData = [
     {
       category: "Pizza",
@@ -7,14 +13,14 @@ const menuData = [
           name: "Veggie Supreme",
           description: "Loaded with fresh vegetables and mozzarella.",
           price: "$8.99",
-          image: "/images/pizza.png",
+          image: pizza,
         },
         {
           id: 2,
           name: "Cheese Lover's Pizza",
           description: "A cheesy delight with a variety of cheeses.",
           price: "$9.99",
-          image: "/images/pizza1.png",
+          image: pizza1,
         },
       ],
     },
@@ -26,14 +32,14 @@ const menuData = [
           name: "Cheeseburger",
           description: "Juicy grilled beef patty with melted cheese.",
           price: "$5.99",
-          image: "/images/burger1.png",
+          image: burger1,
         },
         {
           id: 4,
           name: "Spicy Chicken Burger",
           description: "Crispy fried chicken with spicy mayo.",
           price: "$6.49",
-          image: "/images/burger1.png",
+          image: burger1,
         },
       ],
     },
@@ -45,14 +51,14 @@ const menuData = [
           name: "Cola",
           description: "Refreshing cola served chilled.",
           price: "$1.99",
-          image: "/images/cola.png",
+          image: cola
         },
         {
           id: 6,
           name: "Lemonade",
           description: "Freshly squeezed lemonade.",
           price: "$2.49",
-          image: "/images/cola.png",
+          image: cola,
         },
       ],
     },
