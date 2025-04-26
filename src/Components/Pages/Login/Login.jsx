@@ -16,7 +16,7 @@ const Login = () => {
       await signInWithEmailAndPassword(auth, email, password);
       setMessage({ text: "✅ Login successful!", type: "success" });
       setTimeout(() => {
-        navigate("/food-firebase/");
+        navigate("/");
       }, 1500);
     } catch (err) {
       setMessage({ text: `❌ ${err.message}`, type: "error" });
