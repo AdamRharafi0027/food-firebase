@@ -2,7 +2,7 @@ import {
   Routes,
   Route,
   Navigate,
-} from "react-router-dom"; // No need to import Router here anymore
+} from "react-router-dom";
 import { useAuth } from "./context/AuthContext";
 import Login from "./Components/Pages/Login/Login";
 import Signup from "./Components/Pages/Signup/Signup";
@@ -25,7 +25,7 @@ const App = () => {
   return (
     <Routes>
       <Route
-        path="/food-firebase/"
+        path="/"
         element={
           <ProtectedRoute>
             <>
